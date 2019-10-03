@@ -1,18 +1,16 @@
 <template>
-    <div>
-        <div id="board" class="bg-gray-900">
-            <div class="grid-area bg-white">
-                <p>What went well?</p>
-            </div>
-            <div class="grid-area bg-white">
-                <p>What went wrong?</p>
-            </div>
-            <div class="grid-area bg-white">
-                <p>What We Should Start Doing</p>
-            </div>
-            <div class="grid-area bg-white">
-                <p>What We Should Stop Doing</p>
-            </div>
+    <div id="board" class="bg-gray-900">
+        <div class="grid-area bg-white">
+            <p>What went well?</p>
+        </div>
+        <div class="grid-area bg-white">
+            <p>What went wrong?</p>
+        </div>
+        <div class="grid-area bg-white">
+            <p>What We Should Start Doing</p>
+        </div>
+        <div class="grid-area bg-white">
+            <p>What We Should Stop Doing</p>
         </div>
         <slot></slot>
     </div>
@@ -30,9 +28,8 @@ export default {
         grid-template-rows: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
         grid-gap: 10px;
-        width: 100%;
+        flex: 1 1 auto;
         height: 100%;
-        position: absolute;
         overflow: hidden;
     }
 

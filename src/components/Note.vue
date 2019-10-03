@@ -1,5 +1,5 @@
 <template>
-    <div ref="note" class="note bg-yellow-200 w-32 h-32 p-4 relative border flex items-stretch shadow-lg">
+    <div :id="'note-'+note.id" ref="note" class="note bg-yellow-200 w-32 h-32 p-4 relative border flex items-stretch shadow-lg">
         <moveable v-bind="moveable" @drag="handleDrag" class="absolute top-0 left-0 cursor-move">
             <span class="focus:outline-none text-gray-900 block">
                 <svg viewBox="0 0 20 20" class="fill-current w-2 h-2" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -20,7 +20,7 @@
                 </g>
             </svg>
         </button>
-        <textarea class="w-full bg-transparent resize-none text-xs" v-model="body"></textarea>
+        <textarea class="w-full bg-transparent resize-none text-xs" v-model="note.body"></textarea>
     </div>
 </template>
 
@@ -36,7 +36,6 @@ export default {
         return {
             xpos: 0,
             ypos: 0,
-            body: '',
             moveable: {
                 draggable: true,
                 throttleDrag: 0,
@@ -49,18 +48,14 @@ export default {
         this.xpos = note.xpos || note.id * 1 
         this.ypos = note.ypos || note.id * 1
 
-        this.body = note.body
-
         this.$refs.note.style.top = this.ypos + '%';
         this.$refs.note.style.left = this.xpos + '%';
     },
     methods: {
         handleDrag({ clientX, clientY }) {
-            // console.log('onDrag left, top', clientX, clientY);
             const windowWidth = window.innerWidth;
             const windowHeight = window.innerHeight;
 
-            // console.log(windowWidth, windowHeight)
             const top = clientY / windowHeight * 100;
             const left = clientX / windowWidth * 100;
 
@@ -78,5 +73,10 @@ export default {
 .note {
     position: absolute;
     font-family: fantasy;
+    z-index: 10;
+}
+
+.note.hovered {
+    background: lightblue;
 }
 </style>

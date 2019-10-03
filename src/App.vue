@@ -4,18 +4,21 @@
       <note v-for="note in notes" :note="note" :key="note.id"></note>
     </board>
     <button @click="addNote" class="absolute top-0 left-0 px-2 py-1 ml-4 mt-4 bg-blue-600 text-white rounded uppercase text-sm shadow-lg border hover:bg-blue-700">Add Note</button>
+    <note-selector :notes="notes"></note-selector>
   </div>
 </template>
 
 <script>
 import Board from './components/Board.vue'
 import Note from './components/Note.vue'
+import NoteSelector from './components/NoteSelector.vue'
 
 export default {
   name: 'app',
   components: {
     Board,
-    Note
+    Note,
+    NoteSelector
   },
   data() {
     return {
@@ -56,6 +59,7 @@ export default {
   position: relative;
   min-width: 800px;
   min-height: 500px;
+  display: flex;
 }
 
 .moveable-control-box {
