@@ -34,6 +34,7 @@ export default {
     },
     data() {
         return {
+            id: null,
             xpos: 0,
             ypos: 0,
             moveable: {
@@ -44,6 +45,7 @@ export default {
     },
     mounted() {
         const note = this.note
+        this.id = note.id
 
         this.xpos = note.xpos || note.id * 1 
         this.ypos = note.ypos || note.id * 1
@@ -61,9 +63,21 @@ export default {
 
             this.$refs.note.style.left = `${left}%`;
             this.$refs.note.style.top = `${top}%`;
+
+            this.xpos = left;
+            this.ypos = top;
         },
         remove() {
             this.$refs.note.style.display = 'none';
+            this.$emit('remove-note', this)
+        }
+    },
+    watch: {
+        xpos(){
+            this.$emit('update-note', this);
+        },
+        ypos(){
+            this.$emit('update-note', this);
         }
     }
 }
